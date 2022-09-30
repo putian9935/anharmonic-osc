@@ -21,8 +21,8 @@ template <int deg> mpq_class integrate(Polynomial<mpq_class, deg> p) {
 #include <Eigen/Dense>
 #include <Eigen/Eigen>
 
-int const m = 2;
 auto const w = make_polynomial<mpq_class, 4>({0, 0, 0, 0, -1});
+int const m = 2;
 auto const my_y0 = make_polynomial<mpq_class, m>({-2, 0, 4});
 
 template <typename _Scalar, int deg>

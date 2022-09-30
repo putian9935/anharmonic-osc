@@ -7,6 +7,7 @@
 #define M 4
 #define COEFF_NUM N + M + 1
 
+// Pade(4,4) approximant to e^x
 mpq_class coef[COEFF_NUM] = {
     mpq_class("1"),    mpq_class("1"),        mpq_class(1, 2),
     mpq_class(1, 6),   mpq_class(1, 24),      mpq_class(1, 120),

@@ -22,6 +22,14 @@ struct Polynomial {
         return this -> coef[idx]; 
     }
 
+    _Scalar evaluate(_Scalar const &x) const { 
+        _Scalar ret = this -> coef[deg];
+        for(int i = deg - 1; i >= 0; --i) {
+            ret = x * ret + this -> coef[i];
+        }
+        return ret; 
+    }
+
     friend std::ostream& operator<<(std::ostream& os, Polynomial const &p) {
         for(auto c: p.coef) { 
             os << c << ", "; 
