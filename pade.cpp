@@ -1,5 +1,6 @@
 #include <gmpxx.h>
 #include <iostream>
+#include <iomanip> 
 
 #include <Eigen/Dense>
 
@@ -13,6 +14,17 @@ mpq_class coef[COEFF_NUM] = {
     mpq_class(1, 6),   mpq_class(1, 24),      mpq_class(1, 120),
     mpq_class(1, 720), mpq_class(1, 720 * 7), mpq_class(1, 720 * 7 * 8)};
 
+#include "simple_poly.hpp"
+template <typename _Scalar, int deg>
+Polynomial<_Scalar, deg - 1>
+vector_to_poly(Eigen::Vector<_Scalar, deg> const &v) {
+  Polynomial<_Scalar, deg - 1> ret;
+  for (int i = 0; i < deg; ++i) {
+    ret[i] = v[i];
+  }
+  return ret;
+}
+
 int main() {
   Eigen::Matrix<mpq_class, M, M> a_coef;
   for (int i = 0; i < M; ++i) {
@@ -20,6 +32,7 @@ int main() {
       a_coef(i, j) = coef[N + i - j];
     }
   }
+
   Eigen::Vector<mpq_class, M> rhs;
   for (int i = 0; i < M; ++i) {
     rhs(i) = -coef[N + i + 1];
@@ -34,4 +47,14 @@ int main() {
     }
   }
   std::cout << "Numerator: " << a.transpose() << '\n';
+
+  std::cout << std::setprecision(15); 
+  mpq_class const eps(1);
+  auto poly_b = vector_to_poly(b);
+  mpq_class const res =
+      vector_to_poly(a).evaluate(eps) /
+      (poly_b * make_polynomial<mpq_class, 1>({mpq_class(0), 1}) +
+       make_polynomial<mpq_class, 0>({mpq_class(1)}))
+          .evaluate(eps);
+  std::cout << res.get_d() << '\n';
 }

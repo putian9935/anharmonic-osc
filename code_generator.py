@@ -1,4 +1,4 @@
-for n in range(2, 100):
+for n in range(70, 100):
     print("""  
     auto y%d = update<mpq_class, %d, m>(my_y0 * (w * y%d + %s));
     mpq_class e%d = integrate(my_y0 * (w * y%d + %s)) / integrate(my_y0 * my_y0);

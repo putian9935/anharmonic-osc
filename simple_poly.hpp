@@ -3,7 +3,6 @@
 
 #include <vector> 
 #include <iostream>
-#include <Eigen/Dense>
 
 template<typename _Scalar, int deg> 
 struct Polynomial {
