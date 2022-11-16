@@ -1,6 +1,8 @@
 #include "simple_poly.hpp"
 #include <gmpxx.h>
 #include <iostream>
+#include <Eigen/Dense>
+#include "hermite_coeff.hpp"
 
 #define MAX_ORDER 1000
 mpq_class gamma_lut[MAX_ORDER] = {mpq_class(1), mpq_class(1)};
@@ -18,11 +20,8 @@ template <int deg> mpq_class integrate(Polynomial<mpq_class, deg> p) {
   return ret;
 }
 
-#include <Eigen/Dense>
-
 auto const w = make_polynomial<mpq_class, 4>({0, 0, 0, 0, -1});
-int const m = 9;
-auto const my_y0 = make_polynomial<mpq_class, m>({0, 30240, 0, -80640, 0, 48384, 0, -9216, 0, 512});
+auto const my_y0 = make_polynomial<mpq_class, m>(hermite_coeff);
 
 template <typename _Scalar, int deg>
 Eigen::Vector<_Scalar, deg + 1>

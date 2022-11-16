@@ -3,6 +3,12 @@
 #include <iomanip>
 #include <iostream>
 
+#ifdef BVC_ASYM
+#define BVC bvc_t::ASYM
+#elif defined(BVC_SYM)
+#define BVC bvc_t::SYM 
+#endif 
+
 using vec = Eigen::Vector4d;
 using mat = Eigen::Matrix4<double>;
 
@@ -85,7 +91,7 @@ int main(int argc, char *argv[]) {
   r4(3, 1) = eps;
 
   std::cout << std::setprecision(16);
-  std::cout << find_energy_bisect<bvc_t::ASYM>(energy_left, energy_right)
+  std::cout << find_energy_bisect<BVC>(energy_left, energy_right)
             << '\n';
   return 0;
 }
