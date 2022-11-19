@@ -18,7 +18,7 @@ Alternative to the analytical approach, direct solvers based on diagonalization 
 1. Compile as follows to calculate for the $n$-th eigenvalues, replace the ``n`` in option ``-DOn`` with ``0``, ``1``,..., or ``9``. Only $n=0,1, \ldots, 9$ are supported, otherwise compile error will arise. 
 
 ```bash
-g++ energy.cpp -fdiagnostics-color=always -std=c++17 -lm -lgmp -lgmpxx -DOn -DNDEBUG -o PERTURBATION_EXECTUABLE_NAME
+g++ energy.cpp -fdiagnostics-color=always -std=c++17 -lm -lgmp -lgmpxx -DOn -DNDEBUG -o PERTURBATION_EXECUTABLE_NAME
 ```
 
 Compilation usually takes $3$ minutes to complete. 
@@ -26,7 +26,7 @@ Compilation usually takes $3$ minutes to complete.
 2. Run the output executable as usual. You can redirect the output to file. To help you check answers, in ``results/`` coefficients for all $10$-orders are stored.  
 
 ```bash
-./PERTURBATION_EXECTUABLE_NAME > PERTURBATION_FILE_NAME
+./PERTURBATION_EXECUTABLE_NAME > PERTURBATION_FILE_NAME
 ```
 
 ### Generate Padé approximant 
@@ -40,12 +40,12 @@ python3 pade_generator.py
 2. Compile ``pade.cpp``. 
 
 ```bash
-g++ pade.cpp -fdiagnostics-color=always -std=c++17 -lm -lgmp -lgmpxx -O2 -DNDEBUG -o PADE_EXECTUABLE_NAME
+g++ pade.cpp -fdiagnostics-color=always -std=c++17 -lm -lgmp -lgmpxx -O2 -DNDEBUG -o PADE_EXECUTABLE_NAME
 ```
 
 3. Run the executable. 
 ```bash
-./PADE_EXECTUABLE_NAME
+./PADE_EXECUTABLE_NAME
 ```
 The output would be calculated eigenvalues with $\epsilon$ from $-10$ to $10$ at a step of $0.1$. 
 
@@ -54,13 +54,13 @@ The output would be calculated eigenvalues with $\epsilon$ from $-10$ to $10$ at
 1. Compile ``bf_numerical.cpp``. 
 
 ```bash
-g++ bf_numerical.cpp -fdiagnostics-color=always -std=c++17 -lm -lgmp -lgmpxx -O2 -DNDEBUG -o DIAG_EXECTUABLE_NAME
+g++ bf_numerical.cpp -fdiagnostics-color=always -std=c++17 -lm -lgmp -lgmpxx -O2 -DNDEBUG -o DIAG_EXECUTABLE_NAME
 ```
 
-2. Run ``DIAG_EXECTUABLE_NAME`` with one argument. This argument is the value of $\epsilon$. To give an example, 
+2. Run ``DIAG_EXECUTABLE_NAME`` with one argument. This argument is the value of $\epsilon$. To give an example, 
 
 ```bash
-./DIAG_EXECTUABLE_NAME 0.1
+./DIAG_EXECUTABLE_NAME 0.1
 ```
 The output would be $10$ numbers representing the lowest $10$ eigenvalues.
 
